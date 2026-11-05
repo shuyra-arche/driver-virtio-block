@@ -42,10 +42,12 @@ read/write block service; fixed-sector fixture workloads remain historical
 material. Compilation and interface checks do not prove live DMA, reset or
 recovery behavior. The resident service discovers devices and coordinates
 bindings; it does not run the private queue execution helpers or issue block
-requests. No QEMU/SMP or complete product closure is claimed. The host parser
-checks do not exercise authenticated PCI discovery. New SDK compatibility is
-verified with Vanllia's native Cargo overlay; the retained standalone dependency
-pins are unchanged.
+requests. The opt-in [discovery smoke Unit](tests/discovery/README.md) passed a
+one-core QEMU run with authenticated PCI discovery, IOMMU domain establishment,
+Hub enrollment and native clean retirement. Removing its block device correctly
+fails the discovery verdict. These checks do not prove real block I/O, queue
+DMA, data integrity or SMP. New SDK compatibility uses Vanllia's native Cargo
+overlay; PCI and IOMMU dependencies pin their accepted public intake commits.
 See [provenance and scope](PROVENANCE.md) and [source identities](SOURCE_FILES.json).
 
 The initial `main` baseline contains only a README. The migration runtime is

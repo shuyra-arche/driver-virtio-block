@@ -1,7 +1,7 @@
 [workspace]
 resolver = "3"
 members = ["api", "declaration", "server"]
-exclude = ["tests/unit-document"]
+exclude = ["tests/unit-document", "tests/discovery"]
 
 [workspace.package]
 version = "0.1.0"
@@ -19,10 +19,10 @@ unit = { git = "https://github.com/shuyra-arche/unit.git", rev = "90396f0fda376e
 wire = { git = "https://github.com/shuyra-arche/wire.git", rev = "0ff77dc4573fa2620d2fe995a18c01949d9c7e57" }
 mold = { git = "https://github.com/shuyra-arche/mold.git", rev = "f52501f4c91b686eded8b4bcd743b4e96084b7f9" }
 hub-api = { git = "https://github.com/shuyra-arche/hub.git", rev = "cccef3f325198c8390007ae88b064bae0f21f93e" }
-iommu-api = { git = "https://github.com/shuyra-arche/iommu.git", rev = "5d2038033efcbd55de77534b35e611729d4bd9bd" }
+iommu-api = { git = "https://github.com/shuyra-arche/iommu.git", rev = "3d210b4da522ee0c7427265ce0a0d8946e124b21" }
 driver-shared = { git = "https://github.com/shuyra-arche/driver.git", rev = "bb3427e179e87b640e0d51115a44544fae231252" }
 driver-support = { git = "https://github.com/shuyra-arche/driver.git", rev = "8e6de5a77aa52184bb6f7fbbcbc961f779e94629" }
-pci-api = { git = "https://github.com/shuyra-arche/driver-pci.git", rev = "bc0da12a1bafbf684179301853b5709a1ddfeaf9" }
+pci-api = { git = "https://github.com/shuyra-arche/driver-pci.git", rev = "b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009" }
 
 [profile.dev]
 panic = "abort"

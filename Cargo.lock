@@ -105,7 +105,7 @@ dependencies = [
 [[package]]
 name = "iommu-api"
 version = "0.1.0"
-source = "git+https://github.com/shuyra-arche/iommu.git?rev=5d2038033efcbd55de77534b35e611729d4bd9bd#5d2038033efcbd55de77534b35e611729d4bd9bd"
+source = "git+https://github.com/shuyra-arche/iommu.git?rev=3d210b4da522ee0c7427265ce0a0d8946e124b21#3d210b4da522ee0c7427265ce0a0d8946e124b21"
 dependencies = [
  "env",
  "hub-api",
@@ -117,7 +117,7 @@ dependencies = [
 [[package]]
 name = "iommu-declaration"
 version = "0.1.0"
-source = "git+https://github.com/shuyra-arche/iommu.git?rev=5d2038033efcbd55de77534b35e611729d4bd9bd#5d2038033efcbd55de77534b35e611729d4bd9bd"
+source = "git+https://github.com/shuyra-arche/iommu.git?rev=3d210b4da522ee0c7427265ce0a0d8946e124b21#3d210b4da522ee0c7427265ce0a0d8946e124b21"
 dependencies = [
  "env",
  "system-api",
@@ -156,7 +156,7 @@ dependencies = [
 [[package]]
 name = "pci-api"
 version = "0.1.0"
-source = "git+https://github.com/shuyra-arche/driver-pci.git?rev=bc0da12a1bafbf684179301853b5709a1ddfeaf9#bc0da12a1bafbf684179301853b5709a1ddfeaf9"
+source = "git+https://github.com/shuyra-arche/driver-pci.git?rev=b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009#b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009"
 dependencies = [
  "env",
  "mold",
@@ -167,7 +167,7 @@ dependencies = [
 [[package]]
 name = "pci-declaration"
 version = "0.1.0"
-source = "git+https://github.com/shuyra-arche/driver-pci.git?rev=bc0da12a1bafbf684179301853b5709a1ddfeaf9#bc0da12a1bafbf684179301853b5709a1ddfeaf9"
+source = "git+https://github.com/shuyra-arche/driver-pci.git?rev=b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009#b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009"
 dependencies = [
  "env",
  "system-api",

@@ -1,9 +1,9 @@
 # VirtIO block Unit intake
 
 This extends Draft PR #1 from `65884d635713806d3f20ad42f8337cfe2bed08a2`.
-The existing runtime and its provenance mappings are retained. The new files are
-the provider-owned Unit document and focused document checks, not another source
-extraction. No old test suite or kernel cluster is added.
+The existing runtime and its provenance mappings are retained. New files add the
+provider-owned Unit document, focused document checks and an opt-in discovery
+smoke Unit. No old test suite or kernel cluster is added.
 
 ## Entry, ownership and supply
 
@@ -37,12 +37,15 @@ state and retirement order; this intake changes no runtime ownership logic.
 | Hub | `hub/dma` enrolls devices; `device/coord` handles Prepare/Release. Binding handoff and retirement keep the complete Hub/serial identity. |
 
 PCI inspection and placement must be published by the same task; the runtime
-rejects different owners. The tested PCI API is
-`driver-pci@bc0da12a1bafbf684179301853b5709a1ddfeaf9` (its current Draft runtime
-checkpoint). IOMMU API/declaration were selected from
-`iommu@9bb54099d579e62d2c844ca25d7e5abab8c75f91`; the retained standalone
-manifest still pins its existing public API revision. No newer parallel server
-or Unit document is assumed complete.
+rejects different owners. After the parallel provider intakes merged, this
+workspace's manifest and lock pin their accepted heads:
+
+- PCI: `b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009`.
+- IOMMU: `3d210b4da522ee0c7427265ce0a0d8946e124b21`.
+
+Both API directories are byte-identical to the previous pins. No wire or
+coordinator state-machine adaptation is required. Both providers now include
+their own Unit documents and static hardware supplies.
 
 Teardown remains IOMMU Invalidate → PCI Disable → device reset/readback →
 IOMMU Quiesce → IOMMU Release → BAR detach → PCI Release. The existing exact
@@ -82,22 +85,63 @@ Passed with the selected SDK overlay and isolated locks:
   the image resolves to the existing Cargo binary and source entry.
 - Two existing pure capability-parser checks compiled directly on the host.
 
-The two new document checks also passed with the retained standalone Cargo
+The two document checks also passed with the retained standalone Cargo
 graph. `git diff --check` passed. The server retains 29 existing unused-code and
 reexport warnings. The new SDK binary is a 352616-byte RV64 ET_EXEC ELF with
 entry `0x1d7a4`; SHA-256
 `468f9f0cdb7f59fbf399b4f95f8961f1139cbe059f54243c73e18d2a183af85f`.
 This identifies this artifact, not a byte-reproducibility guarantee.
 
-`vanllia check` on the isolated minimal composition currently fails with
-`Unit virtio-blk references unknown Unit pci`: the separately checked out PCI
-and IOMMU candidate checkpoints have no `unit.toml` yet. Both parallel provider
-intakes must publish their Unit documents and hardware supplies before the
-composition can be checked, packaged and booted. Driver/Vanllia gitlink intake
-and merge ordering belong to the parent integration task.
+## Accepted-dependency composition and guest smoke
 
-No guest execution, authenticated discovery, actual MMIO, block request,
-queue DMA, data-integrity, reset/recovery, IOMMU enforcement or SMP result is
-claimed. The resident coordinator does not call the private queue execution
-helpers; a real execution consumer must provide vrings and issue block requests
-to validate I/O and DMA. Starting the coordination service alone is insufficient.
+With the accepted PCI/IOMMU heads, `vanllia check` and `vanllia plan` pass. The
+minimal resident closure is System → Hub → IOMMU/PCI → VirtIO block. The opt-in
+`test.virtio-blk-discovery` transient Unit extends that closure only for the
+focused discovery check; production selection does not start the test.
+
+The first complete build exposed a System metadata omission: System already
+registers `memory/retention`, but `system@ca0946e` did not list it among its
+runtime resources. Packaging correctly refused the IOMMU supply. The smoke
+uses the existing public System companion fix at
+`b22bbfb0d37e48e62be9c8f2e365598f9e30906a`, selected in a separate worktree;
+no System or shared composition branch was edited here. Parent intake must
+include that declaration fix. Kernel is the current product pin
+`44e33a6ee28d86eeeabe61c225f4176c5ed64c59`; the SDK facades resolve through
+the product's native overlay. Shared SDK pins remain unchanged in this
+provider's standalone manifest.
+
+`vanllia build --unit test.virtio-blk-discovery` produced a complete six-Unit
+artifact. QEMU 10.0.13 used one core, 256 MiB, `virt,iommu-sys=on` and one
+read-only 2 MiB scratch disk on modern `virtio-blk-pci` with
+`iommu_platform=on,disable-legacy=on`. Firmware was an explicitly hashed local
+OpenSBI input and is not committed. The complete artifact identities are in
+[validation/discovery/result.json](validation/discovery/result.json).
+
+- Initrd: 1941504 bytes, SHA-256
+  `e8f2e1b8d71274692d3970880507e7c452bedb4420e0a1a79719badd4b21c1bd`.
+- VirtIO binary: 352672 bytes, SHA-256
+  `77b01a2cdda7625e2787cc79e485c00a1f8a153e6161b2d96614add673987bd7`.
+- Guest logs show IOMMU domain 1 established for coordinator task 7/requester 8,
+  then `virtio-blk: serving hub=4 pci=6 devices=1`.
+- The test authenticates System State and Hub's publisher/list face and requires
+  exactly `virtio-blk-pci-1` in the Hub class. Public
+  `vanllia::testing::verify(..., Expectation::Clean)` passed: native test exit 0,
+  System completion and acknowledged retirement of every task. VM exit was 0.
+- A second run of the same artifact without the block device exited the test
+  with reason 12, and the native clean verifier rejected it. VM exit 0 alone
+  cannot pass this check.
+
+The preserved serial evidence contains every native System frame, with only
+OpenSBI's prose prefix removed and UART CRLF normalized. The current generic
+runner cannot attach the extra hardware, so this test is opt-in, with explicit
+QEMU inputs documented in [tests/discovery/README.md](tests/discovery/README.md).
+Independent review checked the pin changes, authenticated test and its bounded
+failure path; the existing host tests and locked offline standalone RV64 build
+also passed after the dependency update.
+
+These guest results prove the discovery/enrollment path and observed domain
+establishment. They do not exercise block requests, queue DMA, data integrity,
+binding reset/recovery, DMA isolation or SMP. The resident coordinator does not
+call the private queue execution helpers; real I/O still needs an execution
+consumer with vrings and block requests. Driver/Vanllia gitlink intake and
+merge ordering remain owned by the parent integration task.

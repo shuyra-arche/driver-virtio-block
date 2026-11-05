@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "date": "2026-11-05",
+  "qemu": "10.0.13",
+  "cpus": 1,
+  "memory": "256M",
+  "machine": "virt,iommu-sys=on",
+  "disk": {
+    "bytes": 2097152,
+    "readonly": true,
+    "device": "virtio-blk-pci,iommu_platform=on,disable-legacy=on"
+  },
+  "sources": {
+    "virtio_parent": "fecc0147065e1f00f5a30f77490a369582cfc2f2",
+    "pci": "b2c2e5d7a5fbd0b1572273dbbffb56bd91b15009",
+    "iommu": "3d210b4da522ee0c7427265ce0a0d8946e124b21",
+    "system": "b22bbfb0d37e48e62be9c8f2e365598f9e30906a",
+    "kernel": "44e33a6ee28d86eeeabe61c225f4176c5ed64c59",
+    "driver": "f1b56be5a3fa472b6aa301bbfba0ffde878a5ae7",
+    "image-builder": "ea9d4f680fee37232b85dfd69f77935c00383170"
+  },
+  "artifacts": {
+    "initrd": {
+      "path": "initrd.img",
+      "sha256": "e8f2e1b8d71274692d3970880507e7c452bedb4420e0a1a79719badd4b21c1bd",
+      "bytes": 1941504
+    },
+    "kernel": {
+      "path": "image-66e64a21482ce22b4e0fc90e80e2050e72a60a1fcd0a032cb59cff6d5cf39adc",
+      "sha256": "66e64a21482ce22b4e0fc90e80e2050e72a60a1fcd0a032cb59cff6d5cf39adc",
+      "bytes": 1794376
+    },
+    "firmware": {
+      "path": "firmware.bin",
+      "sha256": "c53d58aa9ab17f95fa1af159f0bf05fad5c5622ebc0f1084463435fa6e5752b6",
+      "bytes": 277880
+    },
+    "images": {
+      "hub": {
+        "path": "image-7bd438815ac1aa6a928def2c8481d627e9893aeb0114bc510a994ee5456ef039",
+        "sha256": "7bd438815ac1aa6a928def2c8481d627e9893aeb0114bc510a994ee5456ef039",
+        "bytes": 469712
+      },
+      "iommu": {
+        "path": "image-42f659e6af09783cc28633f7aae55675a81fa4ebe74e3475eb4b9ecc391af49a",
+        "sha256": "42f659e6af09783cc28633f7aae55675a81fa4ebe74e3475eb4b9ecc391af49a",
+        "bytes": 352056
+      },
+      "pci": {
+        "path": "image-b26d9629350806c34d5f8492ec30982ab6d656523f2cc1b406841f1533f96827",
+        "sha256": "b26d9629350806c34d5f8492ec30982ab6d656523f2cc1b406841f1533f96827",
+        "bytes": 322664
+      },
+      "system": {
+        "path": "image-4da5d43292f9cfb81288708540272944a813ff3f554bc5a8e2507e42a52e64e2",
+        "sha256": "4da5d43292f9cfb81288708540272944a813ff3f554bc5a8e2507e42a52e64e2",
+        "bytes": 1752784
+      },
+      "test-virtio-blk-discovery": {
+        "path": "image-83bae565439201b965134eddbc50aebe3e6c490fdbb26ea195c545de51d4457d",
+        "sha256": "83bae565439201b965134eddbc50aebe3e6c490fdbb26ea195c545de51d4457d",
+        "bytes": 263128
+      },
+      "virtio-blk": {
+        "path": "image-77b01a2cdda7625e2787cc79e485c00a1f8a153e6161b2d96614add673987bd7",
+        "sha256": "77b01a2cdda7625e2787cc79e485c00a1f8a153e6161b2d96614add673987bd7",
+        "bytes": 352672
+      }
+    }
+  },
+  "source_sha256": {
+    "tests/discovery/Cargo.lock": "e4c91c54755d2588d50438c4fef65e14dd0374641ff91f5133090df99b0c4ffb",
+    "tests/discovery/Cargo.toml": "85c617649cc7382e01c1bbd6d75b3213ff2522dd374eed63fbada1e631c23aea",
+    "tests/discovery/build.rs": "48b9a83078a1f475dc9c4d6cc9830649c7dce3f86a995076629f8e4084e9c23e",
+    "tests/discovery/main.rs": "be79b147aae20fa0091ad771e73215a637920ffbf9d422deec2c9d39a42ef00e",
+    "tests/discovery/unit.toml": "fef2378750ccaa99d472dff8c0c2287bc0f348c9260a20f73d6b19a6dbb58b30"
+  },
+  "serial_capture": "OpenSBI prose prefix removed; UART CRLF normalized to LF; all native System frames preserved",
+  "logs": {
+    "present": {
+      "raw_sha256": "5be97560c304b0a21c0d3c73133879f1342880f4fb7228deb6c7b0a99472275c",
+      "normalized_sha256": "5716063e24bde07848ffbc126c0e5f299beb733f9d41905ef7422f614805e2b4"
+    },
+    "absent": {
+      "raw_sha256": "063d4a2ee9c5c01f6170e27e3d978ad5b0a73128f01377d3441c9e832f3e5942",
+      "normalized_sha256": "c93e02bb218d4c8838020408b483241aa7f2dd403e36c1c86937e40d7f1c78a6"
+    }
+  },
+  "present": {
+    "vm_exit": 0,
+    "native_clean_verdict": "passed",
+    "test_exit_reason": 0,
+    "system_complete": true,
+    "all_tasks_retired": true,
+    "coordinator_devices": 1
+  },
+  "absent": {
+    "vm_exit": 0,
+    "native_clean_verdict": "rejected",
+    "test_exit_reason": 12
+  },
+  "not_exercised": [
+    "block requests",
+    "queue DMA",
+    "data integrity",
+    "binding reset/recovery",
+    "DMA isolation",
+    "SMP"
+  ]
+}
