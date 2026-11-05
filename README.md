@@ -12,6 +12,14 @@ resident service. PCI configuration inspection is consumed through the PCI
 provider's public `pci_api::inspection` contract; IOMMU protocol types use their
 existing provider.
 
+The provider-owned [unit.toml](unit.toml) lets Vanllia discover the existing
+Cargo binary and select Hub, PCI and IOMMU as startup prerequisites. System
+completes Operator and Identity bootstrap internally. The first namespace
+capability publishes `device/coord`; the driver retains Hub retirement policy.
+There are no static hardware supplies: PCI grants the exact BAR, while the
+execution task supplies DMA memory through the binding protocol. See
+[intake validation and interface requirements](INTAKE.md).
+
 The original peer/owner checks, exact BAR bounds and permissions, monotonic
 binding identities, asynchronous retry/rollback and RISC-V device fences are
 retained. Register setup/queue/notification/reset mechanics remain private to
@@ -26,13 +34,18 @@ cargo test --locked --offline -p virtio-blk-api --target x86_64-unknown-linux-gn
 cargo check --locked --offline -p virtio-blk-declaration --target x86_64-unknown-linux-gnu
 rustc --test --edition=2024 --target x86_64-unknown-linux-gnu server/tests/capabilities.rs -o /tmp/virtio-blk-capabilities
 /tmp/virtio-blk-capabilities
+cargo test --locked --manifest-path tests/unit-document/Cargo.toml --target x86_64-unknown-linux-gnu
 ```
 
 No old scenario/controller or test suite is carried over. There is no new general
 read/write block service; fixed-sector fixture workloads remain historical
 material. Compilation and interface checks do not prove live DMA, reset or
-recovery behavior. No QEMU/SMP or integration into Vanllia's current product is
-claimed. The host parser checks do not exercise authenticated PCI discovery.
+recovery behavior. The resident service discovers devices and coordinates
+bindings; it does not run the private queue execution helpers or issue block
+requests. No QEMU/SMP or complete product closure is claimed. The host parser
+checks do not exercise authenticated PCI discovery. New SDK compatibility is
+verified with Vanllia's native Cargo overlay; the retained standalone dependency
+pins are unchanged.
 See [provenance and scope](PROVENANCE.md) and [source identities](SOURCE_FILES.json).
 
 The initial `main` baseline contains only a README. The migration runtime is
