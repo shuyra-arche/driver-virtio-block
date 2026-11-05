@@ -1,0 +1,11 @@
+schema = 1
+id = "test.virtio-blk-discovery"
+
+[loader]
+image = "test-virtio-blk-discovery"
+
+[control]
+creation = "startup"
+requires = ["virtio-blk"]
+after = ["virtio-blk"]
+ending = "transient"

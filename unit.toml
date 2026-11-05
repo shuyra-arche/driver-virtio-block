@@ -1,0 +1,43 @@
+schema = 1
+id = "virtio-blk"
+
+[loader]
+image = "virtio-blk"
+space = "supervisor"
+args = []
+stack = 0
+
+# Context consumes this publication capability at namespace index 0.
+[[operator.namespace]]
+key = "service"
+placement = "shared"
+path = "device"
+scope = { names = ["coord"] }
+ops = 4 # BIND
+permit = "public"
+source_mark = "197199467071964757" # hub_api::coordination::call::ENTRY
+bindings = []
+
+[identity]
+aliases = []
+grants = []
+
+[control]
+creation = "startup"
+# Operator and Identity finish inside System before startup Units are created.
+requires = ["hub", "pci", "iommu"]
+after = ["hub", "pci", "iommu"]
+ready = { signal = "9887014109901452468" } # unit::READY_MARK
+ending = "resident"
+construction = []
+groups = []
+guarded = false
+
+[[control.retirement]]
+provider = "hub"
+namespace = 0
+face = "retire"
+
+# PCI grants the BAR dynamically; execution supplies DMA memory through Supply.
+[supply]
+bindings = []

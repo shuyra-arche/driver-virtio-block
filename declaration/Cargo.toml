@@ -1,0 +1,10 @@
+[package]
+name = "virtio-blk-declaration"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+unit.workspace = true
+system-api.workspace = true
+hub-api.workspace = true
