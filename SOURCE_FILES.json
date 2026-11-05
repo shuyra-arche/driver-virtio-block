@@ -1,0 +1,522 @@
+{
+  "source_commit": "94e114614bec53424ac55e640fc80cf19a3e7107",
+  "rewrites": [
+    [
+      "use crate::driver::{iommu::api as iommu, pci::api as pci};",
+      "use iommu_api as iommu;\nuse pci_api as pci;"
+    ],
+    [
+      "use crate::driver::pci::{api as pci, inspection};",
+      "use pci_api as pci;\nuse pci_api::inspection;"
+    ],
+    [
+      "use crate::driver::shared::{context::{Context, Step}, lookup, peer::Peer};",
+      "use driver_shared::context::{Context, Step};\nuse crate::lookup;\nuse driver_support::peer::Peer;"
+    ],
+    [
+      "use crate::driver::shared::dma::{self, Coords};",
+      "use hub_api as dma;\nuse virtio_blk_api::Coords;"
+    ],
+    [
+      "use crate::driver::shared::dma;",
+      "use hub_api as dma;"
+    ],
+    [
+      "use crate::driver::virtio::blk::client;",
+      "use virtio_blk_api as client;"
+    ],
+    [
+      "use crate::driver::virtio;",
+      "use crate::protocol as virtio;"
+    ],
+    [
+      "crate::driver::virtio::blk::",
+      "crate::"
+    ],
+    [
+      "crate::driver::virtio::",
+      "crate::protocol::"
+    ],
+    [
+      "crate::driver::iommu::api",
+      "iommu_api"
+    ],
+    [
+      "crate::driver::iommu::domain_id",
+      "crate::domain_id"
+    ],
+    [
+      "crate::driver::pci::api",
+      "pci_api"
+    ],
+    [
+      "crate::driver::shared::peer",
+      "driver_support::peer"
+    ],
+    [
+      "crate::driver::shared::order",
+      "crate::order"
+    ],
+    [
+      "crate::debug::put",
+      "system_support::debug::put"
+    ],
+    [
+      "crate::unit::READY_MARK",
+      "unit::READY_MARK"
+    ],
+    [
+      "use super::peer::Peer;",
+      "use driver_support::peer::Peer;"
+    ],
+    [
+      "Path::new(\"pci/entry\")",
+      "Path::new(pci::ENTRY_PATH)"
+    ],
+    [
+      "Path::new(\"iommu/entry\")",
+      "Path::new(iommu::ENTRY_PATH)"
+    ]
+  ],
+  "files": [
+    {
+      "source": "programs/src/driver/virtio/blk/client/call.rs",
+      "destination": "api/src/call.rs",
+      "source_blob": "ef68bc229f56bdcd3c83d04a11d6788527d51eb1",
+      "source_sha256": "93a7e4b9f11bd8714eb2cb102b720b09b8382e4d20dbbf9358526a950559e005",
+      "destination_sha256": "93a7e4b9f11bd8714eb2cb102b720b09b8382e4d20dbbf9358526a950559e005",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/client/observe.rs",
+      "destination": "api/src/observe.rs",
+      "source_blob": "a55cb39e53fb0d45d166f2351bf7e028800e089f",
+      "source_sha256": "412f8970581377177496bb2d02bfa8300fdbbc0154220c9877d23b27f0a0bc89",
+      "destination_sha256": "412f8970581377177496bb2d02bfa8300fdbbc0154220c9877d23b27f0a0bc89",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/client/said.rs",
+      "destination": "api/src/said.rs",
+      "source_blob": "8ab535ad1d4c5171cef166dbffc65e51f3cd4c56",
+      "source_sha256": "a5e6a5624e3013678c76d902473de95d27714e89702e79a8834025414f637eaa",
+      "destination_sha256": "a5e6a5624e3013678c76d902473de95d27714e89702e79a8834025414f637eaa",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/client/supply.rs",
+      "destination": "api/src/supply.rs",
+      "source_blob": "a46edc628f63ac322f08d0cef11749b92c226d24",
+      "source_sha256": "f53b9343ff372381ad56a510fa4b367df3eaacc6792454207ae5f13088abf7f9",
+      "destination_sha256": "f53b9343ff372381ad56a510fa4b367df3eaacc6792454207ae5f13088abf7f9",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/client/wire.rs",
+      "destination": "api/src/wire.rs",
+      "source_blob": "35f44baa9ed00254220e8b39799a3a6031b66a31",
+      "source_sha256": "5679e9db74d4ae6efc67e8b862fa8b7374f873295c888a3755eebbb411314140",
+      "destination_sha256": "5679e9db74d4ae6efc67e8b862fa8b7374f873295c888a3755eebbb411314140",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/coord.rs",
+      "destination": "server/src/coord.rs",
+      "source_blob": "a4ede10d732473438762c6b29624ba1f972480a1",
+      "source_sha256": "e6a692162cdd20476187b0cb13dd3c218355883e9220e83fdb4e5c8ea546be18",
+      "destination_sha256": "7bf031636e4fe8e829f561711abb641e5d0176400857a8fd93d60ec07052de32",
+      "applied_rewrites": [
+        {
+          "from": "use crate::driver::shared::dma::{self, Coords};",
+          "to": "use hub_api as dma;\nuse virtio_blk_api::Coords;",
+          "count": 1
+        },
+        {
+          "from": "use crate::driver::virtio::blk::client;",
+          "to": "use virtio_blk_api as client;",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::virtio::blk::",
+          "to": "crate::",
+          "count": 9
+        },
+        {
+          "from": "crate::driver::iommu::api",
+          "to": "iommu_api",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::iommu::domain_id",
+          "to": "crate::domain_id",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::pci::api",
+          "to": "pci_api",
+          "count": 1
+        },
+        {
+          "from": "crate::debug::put",
+          "to": "system_support::debug::put",
+          "count": 3
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/exchange.rs",
+      "destination": "server/src/exchange.rs",
+      "source_blob": "dcb504db1d0135ff61ce283a98250aff33d3a5d5",
+      "source_sha256": "52c1c145306e8c52f51dd971f3a5ed846a1068d3caf034aadcc4921e4b165bb0",
+      "destination_sha256": "d41db91ca574881cba67ae5c3a5cc46222d1aaf526c3c3d866e3f6f32ca000bd",
+      "applied_rewrites": [
+        {
+          "from": "crate::driver::iommu::api",
+          "to": "iommu_api",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::pci::api",
+          "to": "pci_api",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/operation.rs",
+      "destination": "server/src/operation.rs",
+      "source_blob": "df673cbcf6bbbd9f7f60df48223876f3deeaa5cb",
+      "source_sha256": "a8d87d8f3a3713803cb1f7b75e790b14c8e3f81967cd6f61f7ed9a8a4fffa3b4",
+      "destination_sha256": "a8d87d8f3a3713803cb1f7b75e790b14c8e3f81967cd6f61f7ed9a8a4fffa3b4",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/peers.rs",
+      "destination": "server/src/peers.rs",
+      "source_blob": "efbd3676fa178fea52ed3b35c743efad727e35a1",
+      "source_sha256": "b7ed3c7e071181b8f9e5bca8ac17d0598809d89a1bc0c8dd2dbcb09c8eb6011a",
+      "destination_sha256": "43c0ef2d7ad9defde6c51a007190d8708008b5f83ee0a0cb34fa83a66f6b162e",
+      "applied_rewrites": [
+        {
+          "from": "crate::driver::iommu::api",
+          "to": "iommu_api",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::pci::api",
+          "to": "pci_api",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::shared::peer",
+          "to": "driver_support::peer",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/polled.rs",
+      "destination": "server/src/polled.rs",
+      "source_blob": "f431432da9e7f2243ec7e880a03b8517437a748d",
+      "source_sha256": "6aac9d573ff927a9dea2ce619df087ec585919d86ff3191e348784b41736d82d",
+      "destination_sha256": "e7572a6144907b564f45b27e0c1081001c7f723938568d1bc57baaa35db80cb9",
+      "applied_rewrites": [
+        {
+          "from": "use crate::driver::{iommu::api as iommu, pci::api as pci};",
+          "to": "use iommu_api as iommu;\nuse pci_api as pci;",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/profile.rs",
+      "destination": "server/src/profile.rs",
+      "source_blob": "5da55b42fb6548778bd1cc28804387c4ee6b7c49",
+      "source_sha256": "c9f30e215d60f01fb2c8b308a9671ec6b61396c79c76f63fe8c49ab6de42cfa0",
+      "destination_sha256": "c9f30e215d60f01fb2c8b308a9671ec6b61396c79c76f63fe8c49ab6de42cfa0",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/recovery/api.rs",
+      "destination": "server/src/recovery/api.rs",
+      "source_blob": "c297987fcbe4a8ca0dce3d99719fb1dc360c0e75",
+      "source_sha256": "6aaa654fc5b15986def4de28eccc4d30b24d2d6986082175c8427a1cfedf3bd6",
+      "destination_sha256": "6aaa654fc5b15986def4de28eccc4d30b24d2d6986082175c8427a1cfedf3bd6",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/recovery/attach_request.rs",
+      "destination": "server/src/recovery/attach_request.rs",
+      "source_blob": "531544a8ef477fa746a7c9044f684c10a3d6d5df",
+      "source_sha256": "167959394f3e8819b14fd6228da2b7085fd7eb57405543b1bf2f2923b4df8cd7",
+      "destination_sha256": "167959394f3e8819b14fd6228da2b7085fd7eb57405543b1bf2f2923b4df8cd7",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/recovery/attachment.rs",
+      "destination": "server/src/recovery/attachment.rs",
+      "source_blob": "b31b234b8879778903bcf50627de4b0f93879b7b",
+      "source_sha256": "dd5e6cb3928966f90d3879045394a51969b167c4d4d7b19a91f4fc544bc2f38a",
+      "destination_sha256": "3f3c9571fbaf7d38c913a28b768656b1d8b1f92aed2eceb4e63858025f5961c7",
+      "applied_rewrites": [
+        {
+          "from": "crate::driver::virtio::",
+          "to": "crate::protocol::",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/recovery/executor.rs",
+      "destination": "server/src/recovery/executor.rs",
+      "source_blob": "f7b5018c256f3bfa93d09f5b233f3a2e7a169a19",
+      "source_sha256": "27dd2ea01e5c0c84cf02e1ac8c9a19b55c6eb3bf9ab35d5b6816a1fe0c6da0e7",
+      "destination_sha256": "3b4355b637b834af4c71a290ce5cd7aa677c710a9dd26cb5dc540146b988d09b",
+      "applied_rewrites": [
+        {
+          "from": "use crate::driver::shared::dma;",
+          "to": "use hub_api as dma;",
+          "count": 1
+        },
+        {
+          "from": "use crate::driver::virtio;",
+          "to": "use crate::protocol as virtio;",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::virtio::blk::",
+          "to": "crate::",
+          "count": 3
+        },
+        {
+          "from": "crate::driver::pci::api",
+          "to": "pci_api",
+          "count": 1
+        },
+        {
+          "from": "crate::debug::put",
+          "to": "system_support::debug::put",
+          "count": 3
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/recovery/mod.rs",
+      "destination": "server/src/recovery/mod.rs",
+      "source_blob": "828673a7d88cfcc8f24b5f4fb0745309b4cdad47",
+      "source_sha256": "4311e025f754e3f620b5af77db7358523c8185a4545965be718444c1379f5e9c",
+      "destination_sha256": "4311e025f754e3f620b5af77db7358523c8185a4545965be718444c1379f5e9c",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/serve.rs",
+      "destination": "server/src/serve.rs",
+      "source_blob": "412a6252d50d105e96646ff538adf0193827339d",
+      "source_sha256": "64e628388364815720a0b90be80804f0a1bccf116012f10d4d6460f9580957b7",
+      "destination_sha256": "7ae73484130066f29f4a57ee3add6074c03f3b2b683a9f264ef4796231bc5d17",
+      "applied_rewrites": [
+        {
+          "from": "use crate::driver::pci::{api as pci, inspection};",
+          "to": "use pci_api as pci;\nuse pci_api::inspection;",
+          "count": 1
+        },
+        {
+          "from": "use crate::driver::shared::{context::{Context, Step}, lookup, peer::Peer};",
+          "to": "use driver_shared::context::{Context, Step};\nuse crate::lookup;\nuse driver_support::peer::Peer;",
+          "count": 1
+        },
+        {
+          "from": "use crate::driver::virtio::blk::client;",
+          "to": "use virtio_blk_api as client;",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::virtio::blk::",
+          "to": "crate::",
+          "count": 4
+        },
+        {
+          "from": "crate::driver::virtio::",
+          "to": "crate::protocol::",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::iommu::api",
+          "to": "iommu_api",
+          "count": 1
+        },
+        {
+          "from": "crate::driver::iommu::domain_id",
+          "to": "crate::domain_id",
+          "count": 1
+        },
+        {
+          "from": "crate::debug::put",
+          "to": "system_support::debug::put",
+          "count": 2
+        },
+        {
+          "from": "crate::unit::READY_MARK",
+          "to": "unit::READY_MARK",
+          "count": 1
+        },
+        {
+          "from": "Path::new(\"pci/entry\")",
+          "to": "Path::new(pci::ENTRY_PATH)",
+          "count": 1
+        },
+        {
+          "from": "Path::new(\"iommu/entry\")",
+          "to": "Path::new(iommu::ENTRY_PATH)",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/stage.rs",
+      "destination": "server/src/stage.rs",
+      "source_blob": "8c12494c9c99b9f1e3c75a2368ff7d3c2316e2d9",
+      "source_sha256": "2cfcfdb4951cc4d60884b0c245ef34746f766f0c73982c9d84db8bb67d65ec30",
+      "destination_sha256": "2cfcfdb4951cc4d60884b0c245ef34746f766f0c73982c9d84db8bb67d65ec30",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/caps.rs",
+      "destination": "server/src/protocol/caps.rs",
+      "source_blob": "ee61f50bc9b81e50e237bfe0e1f6c5d3c512b121",
+      "source_sha256": "0366ebb2ba4865fca4b9d952838a1bb8422aa2e427a1f56b71a87c99d7e1deaf",
+      "destination_sha256": "0366ebb2ba4865fca4b9d952838a1bb8422aa2e427a1f56b71a87c99d7e1deaf",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/device.rs",
+      "destination": "server/src/protocol/device.rs",
+      "source_blob": "1116cf9d9e8d260828f5fcdf94d8247de1e637b5",
+      "source_sha256": "cce295b1272fd71bf655a57c77540f2fab2ace8eab16bd15b36fb6d039f92056",
+      "destination_sha256": "cd8608aa179aa8265333e9da1fc13e1a336c522fcb047945e9ef4f9843c9858f",
+      "applied_rewrites": [
+        {
+          "from": "crate::driver::shared::order",
+          "to": "crate::order",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/virtio/registers.rs",
+      "destination": "server/src/protocol/registers.rs",
+      "source_blob": "8bdc5534b290a4bbc22eed18a48e77a1f6723269",
+      "source_sha256": "86a610c4bad485af301f9864854178a56163b91ee79d6e515ed88c1e305db17d",
+      "destination_sha256": "86a610c4bad485af301f9864854178a56163b91ee79d6e515ed88c1e305db17d",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/shared/coords.rs",
+      "destination": "api/src/coords.rs",
+      "source_blob": "cf66f73a6fc7513016f4aff7d6e6350de1c871ec",
+      "source_sha256": "a7634b40acec937ba25bc97eda94eab7324633de9e97a1a5860461d28df3612d",
+      "destination_sha256": "a7634b40acec937ba25bc97eda94eab7324633de9e97a1a5860461d28df3612d",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/iommu/domain_id.rs",
+      "destination": "server/src/domain_id.rs",
+      "source_blob": "32c2305a93400b477a745e5c087e23534a4c783a",
+      "source_sha256": "0de893af848059671752375de9709d9f27e1bc676b9a0b0fb60bd5af78ade3d1",
+      "destination_sha256": "0de893af848059671752375de9709d9f27e1bc676b9a0b0fb60bd5af78ade3d1",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/shared/lookup.rs",
+      "destination": "server/src/lookup.rs",
+      "source_blob": "1e994c00c2c19fdef1fcc109ce5d379dde70c973",
+      "source_sha256": "79058aa92f0036c97ceed8744d8ce760c50431759d733c4a0e5b1bf90246e6f5",
+      "destination_sha256": "bc1bc55a01bd1f63cf92bee2004f7ad172ce1690598918e60015c68c0911344e",
+      "applied_rewrites": [
+        {
+          "from": "use super::peer::Peer;",
+          "to": "use driver_support::peer::Peer;",
+          "count": 1
+        }
+      ],
+      "transformation": "listed namespace/provider-coordinate rewrites only"
+    },
+    {
+      "source": "programs/src/driver/shared/order.rs",
+      "destination": "server/src/order.rs",
+      "source_blob": "f1d254ba69abda234424891343d106b30616dd5f",
+      "source_sha256": "5e787406785438fa05a9b6bbe5b76803b4cb62f1aa6c8018ad877f019a352837",
+      "destination_sha256": "5e787406785438fa05a9b6bbe5b76803b4cb62f1aa6c8018ad877f019a352837",
+      "applied_rewrites": [],
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/main.rs",
+      "destination": "server/src/main.rs",
+      "source_blob": "4dbd784424cc80b769dd5c2119bb7d5f9035636d",
+      "source_sha256": "bee89734de4b5bb37b1f7b82c97fe21a00917aac9cc7efa72e836d2db4913f7f",
+      "destination_sha256": "87dc8970d4f5976f5dfa2a49f98316d18cc096a2ca45b723d6231f631a571a1f",
+      "adaptation": "Standalone entry: same Report codes/strings; macro and crate path use public SDK.",
+      "transformation": "explicit standalone package/entry wrapper adaptation"
+    },
+    {
+      "source": "programs/src/driver/virtio/blk/client/mod.rs",
+      "destination": "api/src/lib.rs",
+      "source_blob": "322109e93e57408de1a915069600515c18ddd63c",
+      "source_sha256": "379a132b534a85a08f738608a095e7b30e2d48bd4581b72205073e55b3d564b9",
+      "destination_sha256": "8da10f13dd473042ad360d5350ea8505999d6621b617c75dd52b49319283b517",
+      "adaptation": "Public contract exports/marks; Coords is now owned here.",
+      "transformation": "explicit standalone package/entry wrapper adaptation"
+    },
+    {
+      "source": "programs/src/driver/virtio/mod.rs",
+      "destination": "server/src/protocol/mod.rs",
+      "source_blob": "b86241d26367c77e7676f03f94b72fa4431f8c62",
+      "source_sha256": "ae3a99c2e2f244d8b220a5970b5c1f637d09bff83bc46001e49fd0318051a808",
+      "destination_sha256": "7dc4bb7c315ca221e64426f846c740770629889f4695f79c379885c7a763a338",
+      "adaptation": "Device exports retained; resident coordinator separated from protocol.",
+      "transformation": "explicit standalone package/entry wrapper adaptation"
+    },
+    {
+      "source": "crates/composition/src/units/virtio_blk.rs",
+      "destination": "declaration/src/lib.rs",
+      "source_blob": "f31f6014537043308e720bc4e3866c94f05f321a",
+      "source_sha256": "b4e045835df84a802692b64a8ac9b676618733d417c10e38f1541cc34dc3f21a",
+      "destination_sha256": "8ad213785606d5b932a2c11bc92af56dfe116f9590586cd11c82a08c580bdb16",
+      "adaptation": "UnitFile preserved; standalone ImageBuild coordinates added.",
+      "transformation": "explicit standalone package/entry wrapper adaptation"
+    }
+  ],
+  "source_repository": "https://github.com/anreonyr/sqware.git",
+  "source_tree": "4263cb6ae26b6704c86358fdac159528bcc5627d",
+  "history_commits": [
+    "2c17c3877e3f8c67d9db5634d693fa4303d47f8c",
+    "d1abfcad7f41f1147d6cbaba743f6aab080a8b9c",
+    "5d2f3de6a3dfd5da762c52148500072c04c4b4a8",
+    "0db30aae92fcd64f9c98cd5b04d5961ef1c83b51"
+  ],
+  "license_file_found_in_frozen_root_or_selected_subtrees": false
+}

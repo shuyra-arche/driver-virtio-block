@@ -1,0 +1,27 @@
+[workspace]
+resolver = "3"
+members = ["api", "declaration", "server"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+env = { git = "https://github.com/shuyra-arche/env.git", rev = "d3000253cd5d13d466e91fafd4dbb27a5ec5aaae" }
+ipc = { git = "https://github.com/shuyra-arche/ipc.git", rev = "29ad97dc08d9dfc4ea6578b1b77874261229b3b5" }
+resource = { git = "https://github.com/shuyra-arche/resource.git", rev = "dbc96834f50f094b5c386e54a0a2ae5560dcd7f8" }
+execution = { git = "https://github.com/shuyra-arche/execution.git", rev = "1b333a28bc4c34beaea3f7986a9bb6e8ab2db414" }
+system-api = { git = "https://github.com/shuyra-arche/system.git", rev = "9e5d63ca536a176583cf1b0054b4ecf7ddd88257" }
+system-client = { git = "https://github.com/shuyra-arche/system.git", rev = "5a792ff2d39901a970925b1a6d63206adf6c16d8" }
+system-support = { git = "https://github.com/shuyra-arche/system.git", rev = "5a792ff2d39901a970925b1a6d63206adf6c16d8" }
+unit = { git = "https://github.com/shuyra-arche/unit.git", rev = "90396f0fda376e0693fb1b9553aa21864d241057" }
+wire = { git = "https://github.com/shuyra-arche/wire.git", rev = "0ff77dc4573fa2620d2fe995a18c01949d9c7e57" }
+mold = { git = "https://github.com/shuyra-arche/mold.git", rev = "f52501f4c91b686eded8b4bcd743b4e96084b7f9" }
+hub-api = { git = "https://github.com/shuyra-arche/hub.git", rev = "cccef3f325198c8390007ae88b064bae0f21f93e" }
+iommu-api = { git = "https://github.com/shuyra-arche/iommu.git", rev = "5d2038033efcbd55de77534b35e611729d4bd9bd" }
+driver-shared = { git = "https://github.com/shuyra-arche/driver.git", rev = "bb3427e179e87b640e0d51115a44544fae231252" }
+driver-support = { git = "https://github.com/shuyra-arche/driver.git", rev = "8e6de5a77aa52184bb6f7fbbcbc961f779e94629" }
+pci-api = { git = "https://github.com/shuyra-arche/driver-pci.git", rev = "bc0da12a1bafbf684179301853b5709a1ddfeaf9" }
+
+[profile.dev]
+panic = "abort"

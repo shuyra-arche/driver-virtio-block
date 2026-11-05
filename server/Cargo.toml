@@ -1,0 +1,37 @@
+[package]
+name = "virtio-blk-server"
+version.workspace = true
+edition.workspace = true
+publish = false
+autotests = false
+
+[lib]
+path = "src/lib.rs"
+test = false
+bench = false
+doctest = false
+
+[[bin]]
+name = "virtio-blk"
+path = "src/main.rs"
+test = false
+bench = false
+doctest = false
+
+[dependencies]
+env.workspace = true
+ipc.workspace = true
+resource.workspace = true
+execution.workspace = true
+system-api.workspace = true
+system-client.workspace = true
+system-support.workspace = true
+unit.workspace = true
+wire.workspace = true
+mold.workspace = true
+hub-api.workspace = true
+iommu-api.workspace = true
+pci-api.workspace = true
+driver-shared.workspace = true
+driver-support.workspace = true
+virtio-blk-api = { path = "../api" }

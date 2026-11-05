@@ -1,0 +1,11 @@
+[package]
+name = "virtio-blk-api"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+env.workspace = true
+wire.workspace = true
+hub-api.workspace = true
+mold.workspace = true
