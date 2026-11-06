@@ -29,8 +29,6 @@ acknowledged retirement; a diagnostic banner alone cannot pass. Keep a bounded
 host timeout. Without the attached block device, the five-second lookup ends
 with reason 12 and the clean verdict must reject it.
 
-[Captured results](../../validation/discovery/result.json) include both runs,
-the exact provider revisions and artifact hashes. The logs normalize CRLF and
-omit OpenSBI's prose prefix while retaining every native System frame. These
-results cover authenticated discovery, IOMMU domain establishment and Hub
-enrollment. They do not validate block I/O, queue DMA or data integrity.
+Keep each run's complete serial stream and artifact identities with its CI or
+release artifacts. This check covers authenticated discovery and Hub enrollment;
+it does not validate block I/O, queue DMA or data integrity.

@@ -1,97 +1,0 @@
-VNE1:0001
-
-system: minted hub tid=4
-VNE1:01036875620403
-
-system: static construct name=hub task=4 team=3 owner=1
-system: prepare hub begin
-system: prepare hub identity installed
-system: prepare hub namespace
-system: activate hub tid=4
-hub: serve enter
-hub: inventory received
-VNE1:0204
-
-system: minted iommu tid=5
-VNE1:0105696f6d6d750504
-
-system: static construct name=iommu task=5 team=4 owner=1
-system: prepare iommu begin
-system: prepare iommu identity installed
-system: prepare iommu namespace
-system: activate iommu tid=5
-iommu: space task=5 iommu=0x2f000 retain=580 ddtp=0x0 (off)
-iommu: retained engine pool pages=196 contexts=64
-iommu: ready
-VNE1:0205
-
-system: minted pci tid=6
-VNE1:01037063690605
-
-system: static construct name=pci task=6 team=5 owner=1
-system: prepare pci begin
-system: prepare pci identity installed
-system: prepare pci namespace
-system: activate pci tid=6
-pci: space task=6 ecam=0x2c000 functions=65536
-pci: ready functions=65536
-VNE1:0206
-
-system: minted virtio-blk tid=7
-VNE1:010a76697274696f2d626c6b0706
-
-system: static construct name=virtio-blk task=7 team=6 owner=1
-system: prepare virtio-blk begin
-system: prepare virtio-blk identity installed
-system: prepare virtio-blk namespace
-system: activate virtio-blk tid=7
-VNE1:0207
-
-system: minted test.virtio-blk-discovery tid=8
-VNE1:0119746573742e76697274696f2d626c6b2d646973636f766572790807
-
-system: static construct name=test.virtio-blk-discovery task=8 team=7 owner=1
-system: prepare test.virtio-blk-discovery begin
-system: prepare test.virtio-blk-discovery identity installed
-system: prepare test.virtio-blk-discovery namespace
-system: activate test.virtio-blk-discovery tid=8
-VNE1:0208
-
-system: running
-iommu: domain 1 established owner=7 requester=8
-virtio-blk: ready hub=4 pci=6 requester=8 key=1
-virtio-blk: serving hub=4 pci=6 devices=1
-VNE1:03080000
-
-VNE1:0408
-
-system: retired name=test.virtio-blk-discovery task=8 team=7
-VNE1:030701feffffff0f
-
-VNE1:0407
-
-system: retired name=virtio-blk task=7 team=6
-VNE1:030501feffffff0f
-
-VNE1:0405
-
-system: retired name=iommu task=5 team=4
-VNE1:030601feffffff0f
-
-VNE1:0406
-
-system: retired name=pci task=6 team=5
-VNE1:030401feffffff0f
-
-VNE1:0404
-
-system: retired name=hub task=4 team=3
-system: internal tasks stopped
-VNE1:050100
-
-task: all tasks exited, system halted
-timer: late_n=277 late_max_ms=0 late_avg_ms=0 late_max_tick=8558 traps=461 tocks=1365 mutes=1088
-doom: held=0 starved=1 blocked=3 nudged=0
-sched: kicks=688 fallback=943
-supervisor_external: ring=0 busy=0 idle_ring=0 idle_busy=0
-hole: push_hold_n=0 push_hold_max_ms=0 worst=hole#0 from=0 owner=0 live=0 back_n=0 back_max_len=0
